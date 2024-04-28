@@ -67,20 +67,4 @@ namespace Lab_6
                     (int)(color2.B * k + color1.B * (1 - k))
                 );
             }
-
-            // ну и отрисовку перепишем
-            public override void Draw(Graphics g)
-            {
-                float k = Math.Min(1f, Life / 100);
-
-                // так как k уменьшается от 1 до 0, то порядок цветов обратный
-                var color = MixColor(ToColor, FromColor, k);
-                var b = new SolidBrush(color);
-
-                g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-
-                b.Dispose();
-            }
-        }
-    }
 }
