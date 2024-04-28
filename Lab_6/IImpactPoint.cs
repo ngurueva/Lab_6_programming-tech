@@ -4,6 +4,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Schema;
+using static System.Windows.Forms.LinkLabel;
 
 namespace Lab_6
 {
@@ -31,6 +34,18 @@ namespace Lab_6
         public class GravityPoint : IImpactPoint
         {
             public int Power = 100; // сила притяжения
+            public int radius = 100;
+            public Color[] color = { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.LightBlue, Color.Blue, Color.Purple, Color.Pink, Color.White, Color.SaddleBrown, Color.Salmon, Color.Snow, Color.Turquoise};
+
+            Random random = new Random();
+            public int i = 0;
+            public int color1 = 0;
+            public int color2 = 1;
+            public int color3 = 2;
+            public int color4 = 3;
+            public int color5 = 4;
+            public int color6 = 5;
+            public int color7 = 6;
 
             // а сюда по сути скопировали с минимальными правками то что было в UpdateState
             public override void ImpactParticle(Particle particle)
@@ -49,45 +64,67 @@ namespace Lab_6
             }
             public override void Render(Graphics g)
             {
+                
+
+                // буду рисовать окружность с диаметром равным Power
                 // буду рисовать окружность с диаметром равным Power
                 g.DrawEllipse(
-                       new Pen(Color.Red),
-                       X - Power / 2,
-                       Y - Power / 2,
-                       Power,
-                       Power
+                       new Pen(color[color7 + i]),
+                       X - 430,
+                       Y - 100,
+                       radius,
+                       radius
+                   );
+
+                g.DrawEllipse(
+                       new Pen(color[color1 + i]),
+                       X - 338,
+                       Y - 60,
+                       radius,
+                       radius
+                   );
+
+                g.DrawEllipse(
+                       new Pen(color[color2 + i]),
+                       X - 245,
+                       Y - 20,
+                       radius,
+                       radius
+                   );
+
+                g.DrawEllipse(
+                       new Pen(color[color3 + i]),
+                       X - 147,
+                       Y + 8,
+                       radius,
+                       radius
+                   );
+
+                g.DrawEllipse(
+                       new Pen(color[color4 + i]),
+                       X - 50,
+                       Y - 20,
+                       radius,
+                       radius
+                   );
+
+                g.DrawEllipse(
+                       new Pen(color[color5 + i]),
+                       X + 42,
+                       Y - 60,
+                       radius,
+                       radius
+                   );
+
+                g.DrawEllipse(
+                       new Pen(color[color6 + i]),
+                       X + 135,
+                       Y - 100,
+                       radius,
+                       radius
                    );
 
 
-                var stringFormat = new StringFormat();
-                stringFormat.Alignment = StringAlignment.Center;
-                stringFormat.LineAlignment = StringAlignment.Center;
-
-                // обязательно выносим текст и шрифт в переменные
-                var text = $"Я гравитон\nc силой {Power}";
-                var font = new Font("Verdana", 10);
-
-                // вызываем MeasureString, чтобы померить размеры текста
-                var size = g.MeasureString(text, font);
-
-                // рисуем подложнку под текст
-                g.FillRectangle(
-                    new SolidBrush(Color.Red),
-                    X - size.Width / 2, // так как я выравнивал текст по центру то подложка должна быть центрирована относительно X,Y
-                    Y - size.Height / 2,
-                    size.Width,
-                    size.Height
-                );
-
-                // ну и текст рисую уже на базе переменных
-                g.DrawString(
-                    text,
-                    font,
-                    new SolidBrush(Color.White),
-                    X,
-                    Y,
-                    stringFormat
-                );
             }
         }
         public class AntiGravityPoint : IImpactPoint
