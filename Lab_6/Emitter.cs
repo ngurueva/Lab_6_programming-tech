@@ -40,7 +40,7 @@ namespace Lab_6
 
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
-
+        
 
 
         /* добавил метод */
@@ -55,6 +55,7 @@ namespace Lab_6
 
         public void UpdateState()
         {
+
 
             int particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
 
@@ -73,7 +74,7 @@ namespace Lab_6
                     particle.Life -= 1;
                     foreach (var point in impactPoints)
                     {
-                        point.ImpactParticle(particle);
+                        point.ImpactParticle(particle, point.getColor());
                     }
 
                     particle.SpeedX += GravitationX;
@@ -111,16 +112,7 @@ namespace Lab_6
 
 
 
-        public Color[] color = { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.LightBlue, Color.Blue, Color.Purple, Color.Pink, Color.White, Color.SaddleBrown, Color.Salmon, Color.Snow, Color.Turquoise };
 
-        public int i = 0;
-        public int color1 = 0;
-        public int color2 = 1;
-        public int color3 = 2;
-        public int color4 = 3;
-        public int color5 = 4;
-        public int color6 = 5;
-        public int color7 = 6;
 
 
         public void Render(Graphics g)
@@ -130,52 +122,17 @@ namespace Lab_6
             // не трогаем
             foreach (var particle in particles)
             {
-                int o = 100;
-                foreach (var point in impactPoints) // тут теперь  impactPoints
-                {
-                    o = point.radius;
-                    point.Render(g);
-                }
-
+                
                 particle.Draw(g);
-                if (particle.Y >= 100 && particle.X > 20 && particle.X < 100 - 100 + o)
-                {
-                        particle.FirstDraw(g, color[color7 + i]);
-
-                }
-                if (particle.Y >= 140 && particle.X > 100 && particle.X < 200 - (100 - o))
-                {
-                    particle.FirstDraw(g, color[color1 + i]);
-
-                }
-                if (particle.Y >= 170 && particle.X > 200 && particle.X < 300 - (100 - o))
-                {
-                    particle.FirstDraw(g, color[color2 + i]);
-
-                }
-                if (particle.Y >= 200 && particle.X > 300 && particle.X < 400 - (100 - o))
-                {
-                    particle.FirstDraw(g, color[color3 + i]);
-
-                }
-                if (particle.Y >= 170 && particle.X > 400 && particle.X < 500 - (100 - o))
-                {
-                    particle.FirstDraw(g, color[color4 + i]);
-
-                }
-                if (particle.Y >= 140 && particle.X > 500 && particle.X < 600 - (100 - o))
-                {
-                    particle.FirstDraw(g, color[color5 + i]);
-
-                }
-                if (particle.Y >= 100 && particle.X > 600 && particle.X < 700 - (100 - o))
-                {
-                    particle.FirstDraw(g, color[color6 + i]);
-
-                }
             }
 
-            
+            foreach (var point in impactPoints) // тут теперь  impactPoints
+            {
+                //int o = point.radius;
+                point.Render(g);
+            }
+
+
         }
 
         // добавил новый метод, виртуальным, чтобы переопределять можно было
@@ -202,6 +159,7 @@ namespace Lab_6
 
             public override void ResetParticle(Particle particle)
             {
+                particle.Color = Color.White;
                 base.ResetParticle(particle); // вызываем базовый сброс частицы, там жизнь переопределяется и все такое
 
                 // а теперь тут уже подкручиваем параметры движения
