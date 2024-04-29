@@ -68,6 +68,7 @@
             // 
             this.tbGraviton1.Location = new System.Drawing.Point(1051, 38);
             this.tbGraviton1.Maximum = 100;
+            this.tbGraviton1.Minimum = 50;
             this.tbGraviton1.Name = "tbGraviton1";
             this.tbGraviton1.Size = new System.Drawing.Size(236, 69);
             this.tbGraviton1.TabIndex = 3;

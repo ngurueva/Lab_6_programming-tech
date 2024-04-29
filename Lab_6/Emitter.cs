@@ -130,57 +130,52 @@ namespace Lab_6
             // не трогаем
             foreach (var particle in particles)
             {
+                int o = 100;
+                foreach (var point in impactPoints) // тут теперь  impactPoints
+                {
+                    o = point.radius;
+                    point.Render(g);
+                }
+
                 particle.Draw(g);
-                if (particle.Y >= 100 && particle.X > 20 && particle.X < 100)
+                if (particle.Y >= 100 && particle.X > 20 && particle.X < 100 - 100 + o)
                 {
                         particle.FirstDraw(g, color[color7 + i]);
 
                 }
-                if (particle.Y >= 140 && particle.X > 100 && particle.X < 200)
+                if (particle.Y >= 140 && particle.X > 100 && particle.X < 200 - (100 - o))
                 {
                     particle.FirstDraw(g, color[color1 + i]);
 
                 }
-                if (particle.Y >= 170 && particle.X > 200 && particle.X < 300)
+                if (particle.Y >= 170 && particle.X > 200 && particle.X < 300 - (100 - o))
                 {
                     particle.FirstDraw(g, color[color2 + i]);
 
                 }
-                if (particle.Y >= 200 && particle.X > 300 && particle.X < 400)
+                if (particle.Y >= 200 && particle.X > 300 && particle.X < 400 - (100 - o))
                 {
                     particle.FirstDraw(g, color[color3 + i]);
 
                 }
-                if (particle.Y >= 170 && particle.X > 400 && particle.X < 500)
+                if (particle.Y >= 170 && particle.X > 400 && particle.X < 500 - (100 - o))
                 {
                     particle.FirstDraw(g, color[color4 + i]);
 
                 }
-                if (particle.Y >= 140 && particle.X > 500 && particle.X < 600)
+                if (particle.Y >= 140 && particle.X > 500 && particle.X < 600 - (100 - o))
                 {
                     particle.FirstDraw(g, color[color5 + i]);
 
                 }
-                if (particle.Y >= 100 && particle.X > 600 && particle.X < 700)
+                if (particle.Y >= 100 && particle.X > 600 && particle.X < 700 - (100 - o))
                 {
                     particle.FirstDraw(g, color[color6 + i]);
 
                 }
             }
 
-            foreach (var point in impactPoints) // тут теперь  impactPoints
-            {
-                /* это больше не надо
-                g.FillEllipse(
-                    new SolidBrush(Color.Red),
-                    point.X - 5,
-                    point.Y - 5,
-                    10,
-                    10
-                );
-                */
-                point.Render(g); // это добавили
-            }
+            
         }
 
         // добавил новый метод, виртуальным, чтобы переопределять можно было
