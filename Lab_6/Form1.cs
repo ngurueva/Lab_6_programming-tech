@@ -18,7 +18,11 @@ namespace Lab_6
         List<Emitter> emitters = new List<Emitter>();
         Emitter emitter;
 
-        GravityPoint point1; // добавил поле под первую точку
+        public GravityPoint point1; // добавил поле под первую точку
+        public GravityPoint getPoint() {  return point1; }
+
+        public int R = 100;
+
         public Form1()
         {
             InitializeComponent();
@@ -77,6 +81,7 @@ namespace Lab_6
         private void tbGraviton1_Scroll(object sender, EventArgs e)
         {
             point1.radius = tbGraviton1.Value;
+            R = tbGraviton1.Value;
         }
 
         private void tbGraviton2_Scroll(object sender, EventArgs e)
@@ -91,6 +96,7 @@ namespace Lab_6
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             point1.i = trackBar1.Value;
+            emitter.i = trackBar1.Value;
         }
     }
 }

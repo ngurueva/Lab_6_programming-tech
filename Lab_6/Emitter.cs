@@ -4,8 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Lab_6.IImpactPoint;
 using static Lab_6.Particle;
+using static Lab_6.Form1;
 
 namespace Lab_6
 {
@@ -19,6 +21,8 @@ namespace Lab_6
         public float GravitationY = 1;
 
         public List<IImpactPoint> impactPoints = new List<IImpactPoint>();
+
+        public GravityPoint point1;
 
 
         public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
@@ -36,6 +40,7 @@ namespace Lab_6
 
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
+
 
 
         /* добавил метод */
@@ -78,6 +83,7 @@ namespace Lab_6
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY; */
                 }
+                
             }
 
             // второй цикл меняем на while, 
@@ -103,12 +109,63 @@ namespace Lab_6
             }
         }
 
+
+
+        public Color[] color = { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.LightBlue, Color.Blue, Color.Purple, Color.Pink, Color.White, Color.SaddleBrown, Color.Salmon, Color.Snow, Color.Turquoise };
+
+        public int i = 0;
+        public int color1 = 0;
+        public int color2 = 1;
+        public int color3 = 2;
+        public int color4 = 3;
+        public int color5 = 4;
+        public int color6 = 5;
+        public int color7 = 6;
+
+
         public void Render(Graphics g)
         {
+         
+
             // не трогаем
             foreach (var particle in particles)
             {
                 particle.Draw(g);
+                if (particle.Y >= 100 && particle.X > 20 && particle.X < 100)
+                {
+                        particle.FirstDraw(g, color[color7 + i]);
+
+                }
+                if (particle.Y >= 140 && particle.X > 100 && particle.X < 200)
+                {
+                    particle.FirstDraw(g, color[color1 + i]);
+
+                }
+                if (particle.Y >= 170 && particle.X > 200 && particle.X < 300)
+                {
+                    particle.FirstDraw(g, color[color2 + i]);
+
+                }
+                if (particle.Y >= 200 && particle.X > 300 && particle.X < 400)
+                {
+                    particle.FirstDraw(g, color[color3 + i]);
+
+                }
+                if (particle.Y >= 170 && particle.X > 400 && particle.X < 500)
+                {
+                    particle.FirstDraw(g, color[color4 + i]);
+
+                }
+                if (particle.Y >= 140 && particle.X > 500 && particle.X < 600)
+                {
+                    particle.FirstDraw(g, color[color5 + i]);
+
+                }
+                if (particle.Y >= 100 && particle.X > 600 && particle.X < 700)
+                {
+                    particle.FirstDraw(g, color[color6 + i]);
+
+                }
             }
 
             foreach (var point in impactPoints) // тут теперь  impactPoints

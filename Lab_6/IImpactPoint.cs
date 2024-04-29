@@ -15,6 +15,9 @@ namespace Lab_6
         public float X; // ну точка же, вот и две координаты
         public float Y;
 
+        public int radius = 100;
+
+        public int getRadius() { return radius; }
         // абстрактный метод с помощью которого будем изменять состояние частиц
         // например притягивать
         public abstract void ImpactParticle(Particle particle);
@@ -33,8 +36,7 @@ namespace Lab_6
 
         public class GravityPoint : IImpactPoint
         {
-            public int Power = 100; // сила притяжения
-            public int radius = 100;
+            public int Power = 0; // сила притяжения
             public Color[] color = { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.LightBlue, Color.Blue, Color.Purple, Color.Pink, Color.White, Color.SaddleBrown, Color.Salmon, Color.Snow, Color.Turquoise};
 
             Random random = new Random();
